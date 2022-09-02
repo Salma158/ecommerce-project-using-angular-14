@@ -1,0 +1,15 @@
+<div class="confirmation-container" *ngIf="user">
+  <div class="confirmation-items">
+    <p class="confirmation-header">Success!</p>
+    <p>
+      Thank you, <span style="font-weight: bold">{{ user?.name }}</span>
+    </p>
+    <p>
+      Your
+      <span style="font-weight: bold">{{ user?.price | currency }}</span> order
+      is confirmed!
+    </p>
+    <p>Please allow 1-3 business day(s) for shipping.</p>
+    <button (click)="back()" class="button">Back to products list</button>
+  </div>
+</div>

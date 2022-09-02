@@ -1,0 +1,25 @@
+<div class="product-container" *ngIf="product">
+  <div>
+    <a [routerLink]="['products', product.id]">
+      <img class="product-image" src="{{ product.url }}" />
+    </a>
+  </div>
+  <p class="name">{{ product.name }}</p>
+  <p class="price">{{ product.price | currency }}</p>
+  <!-- <input class="select-input" type="number" id="quantity" min="1" [(ngModel)]="amount" /> -->
+  <select class="select-input" name="amount" [(ngModel)] = "amount">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+  <div>
+    <button class="button" (click)="emitter(product)">Add to cart</button>
+  </div>
+</div>

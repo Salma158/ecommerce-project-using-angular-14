@@ -1,0 +1,84 @@
+<div class="cart-container" *ngIf="!empty">
+  <div class="cart-item-details" *ngIf="items.length > 0">
+    <div class="cart-item" *ngFor="let item of items; let index = index">
+      <img class="img" src="{{ item.product.url }}" alt="" />
+      <div class="cart-item-details">
+        <h3>{{ item.product.name }}</h3>
+        <p>{{ item.product.price | currency }}</p>
+        <div>
+          <label>Amount: </label>
+
+          <input
+            type="number"
+            min="0"
+            class="number-input"
+            [(ngModel)]="item.quantity"
+            (input)="updateamount(index)"
+          />
+        </div>
+      </div>
+    </div>
+    <h2>Total: {{ total | currency }}</h2>
+  </div>
+
+  <form
+    #userdata="ngForm"
+    (ngSubmit)="onsubmit(userdata.value.name)"
+    class="cart-panel"
+  >
+    <div>
+      <label for="name">Full name</label>
+      <input
+        type="text"
+        required
+        #name="ngModel"
+        id="name"
+        name="name"
+        ngModel
+        (ngModelChange)="onNameChange(name)"
+      />
+      <p *ngIf="name.invalid && name.touched" style="color: red">
+        Please enter a valid input
+      </p>
+    </div>
+    <div>
+      <label for="address">Address</label>
+      <input
+        type="text"
+        required
+        #address="ngModel"
+        id="addess"
+        name="address"
+        ngModel
+      />
+      <p *ngIf="address.invalid && address.touched" style="color: red">
+        Please enter a valid input
+      </p>
+    </div>
+    <div>
+      <label for="credit">Credit card number</label>
+      <input
+        type="text"
+        required
+        #credit="ngModel"
+        id="credit"
+        name="credit"
+        ngModel
+      />
+      <p *ngIf="credit.invalid && credit.touched" style="color: red">
+        Please enter a valid input
+      </p>
+    </div>
+    <p>We will never share your payment details with anyone else except you ( {{userName}} ) </p>
+    <button [disabled]="userdata.invalid" class="button">Submit</button>
+  </form>
+</div>
+<div *ngIf="empty" class="cart">
+  <h1>Your Cart is empty</h1>
+  <p>You have no items in your shopping cart, Let's go buy something!</p>
+  <img
+    class="emptyimg"
+    src="https://www.iconbunny.com/icons/media/catalog/product/1/0/1067.12-empty-cart-icon-iconbunny.jpg"
+    alt=""
+  />
+</div>
